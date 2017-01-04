@@ -13,6 +13,7 @@ var fs = require("fs");
 
 // *** NAME PICKER! ***
 
+// Asynchronously reads through the file data
 var data = fs.readFile('./students.txt', 'utf-8', function(err, data){
   if (err) throw err;
   // console.log(data);
@@ -24,7 +25,11 @@ var data = fs.readFile('./students.txt', 'utf-8', function(err, data){
   // picks random name from array
 
   var name = names[randomIndex];
-  console.log(name);
+  // console.log(name);
+  fs.writeFile('randomStudent.txt', name, function(err){
+    if (err) throw err;
+    console.log('random student file saved');
+  })
 });
 
 // *** RANDOM PAIRS ***
@@ -48,7 +53,10 @@ var data = fs.readFile('./students.txt', 'utf-8', function(err, data){
     lastGroup.push(odd);
     groups.push(lastGroup);
   }
-  console.log(groups);
+  fs.writeFile('groups.txt', groups.join('\n'), function(err){
+    if (err) throw err;
+    console.log('pairs file saved');
+  })
 });
 
 //   for (var i = 0; i < names.length; i++) {
@@ -67,5 +75,59 @@ var data = fs.readFile('./students.txt', 'utf-8', function(err, data){
 //   }
 
 // });
+
+// *** fs.writeFile ***
+
+// fs.writeFile('example', 'this is an example', function(err) {
+//   if (err) throw err;
+//   console.log('saved');
+// });
+
+// *** WEEKLY CHECKINS ***
+
+var data = fs.readFile('./students.txt', 'utf-8', function(err, data){
+  if (err) throw err;
+
+  var students = data.split('\n');
+  students.pop();
+
+  // var groups = [];
+  var weekdays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
+
+  var filename = 'checkins.md';
+  var filecontents = 'These are the check-ins:\n';
+
+  weekdays.forEach(function(day) {
+    filecontents += '\n';
+    filecontents += '## ';
+    filecontents += day;
+    filecontents += ' ##';
+    filecontents += '\n';
+    filecontents += students.splice(0,4).join('\n');
+    filecontents += '\n';
+  })
+
+  // while (names.length) {
+  //   var group = names.splice(0,4);
+  //   groups.push(group);
+
+  //   for (var i = 0; i < weekdays.length; i++) {
+  //     var day = weekdays[i];
+  //   }
+
+  //     console.log(day + '\n' + group);
+
+  // }
+
+  fs.writeFile(filename, filecontents, function(err){
+    if (err) throw err;
+    console.log('checkin file saved');
+  })
+
+});
+
+
+
+
 
 

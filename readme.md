@@ -20,7 +20,7 @@ If there's an odd number create a group of 3.
 
 Read in the data from `students.txt` and create a Weekly Check-in file.
 
-Instructors should meet with 4 students a day.  Display each day of the week followed by 4 students nams.
+Instructors should meet with 4 students a day.  Display each day of the week followed by 4 student names.
 
 Save the file as `checkins.md`
 
