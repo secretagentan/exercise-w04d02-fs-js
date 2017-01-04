@@ -16,7 +16,7 @@ Return a random student's name.
 Read in the data from `students.txt` and return groups of two.
 If there's an odd number create a group of 3.
 
-## 👩‍⚕️Weekly Checkins
+## 👩‍ Weekly Checkins
 
 Read in the data from `students.txt` and create a Weekly Check-in file.
 
